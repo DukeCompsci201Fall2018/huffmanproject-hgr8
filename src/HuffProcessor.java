@@ -82,9 +82,23 @@ public class HuffProcessor {
 
 	private String[] makeCodingsFromTree(HuffNode root) {
 		
-		//TODO everything
+		String[] encodings = new String[ALPH_SIZE + 1];
+	    codingHelper(root,"",encodings);
+
 		
-		return null;
+		return encodings;
+	}
+
+	private void codingHelper(HuffNode root, String string, String[] encodings) {
+		
+		if(root.myLeft == null && root.myRight == null) {
+			encodings[root.myValue] = string;
+		}
+		else {
+			codingHelper(root.myLeft, string += "0", encodings);
+			codingHelper(root.myLeft, string += "1", encodings);
+		}
+		
 	}
 
 	//TODO check PSEUDO_EOF is represented in the tree
